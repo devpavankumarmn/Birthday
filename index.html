@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Preview</title>
+  <title>Happy Birthday Unnathi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -19,7 +19,7 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Montserrat', sans-serif;
-      background-color: #0b0704;
+      background-color: #0d0906;
       color: #fff;
     }
 
@@ -28,30 +28,35 @@
       width: 100vw;
       height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-end;
       align-items: center;
       overflow: hidden;
     }
 
+    /* Crisp, fully visible mother & baby elephant image */
     .elephant-bg {
       position: absolute;
-      top: -5%;
-      left: -5%;
-      width: 110%;
-      height: 110%;
-      background-image: url('https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=2000&auto=format&fit=crop');
+      inset: -2% -2% -2% -2%;
+      background-image: url('https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=2600&auto=format&fit=crop');
       background-size: cover;
-      background-position: center 35%;
-      filter: brightness(0.72) contrast(1.1);
-      animation: subtleBreathe 18s ease-in-out infinite alternate;
+      background-position: center 25%;
+      filter: brightness(0.92) contrast(1.05);
+      animation: gentleZoom 16s ease-in-out infinite alternate;
       z-index: 1;
     }
 
-    .golden-vignette {
+    /* Subtle bottom gradient only to keep elephants 100% visible */
+    .cinematic-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 50% 40%, rgba(243, 156, 18, 0.25) 0%, rgba(15, 8, 3, 0.75) 75%, rgba(0, 0, 0, 0.95) 100%);
-      mix-blend-mode: multiply;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05) 0%,
+        rgba(0, 0, 0, 0.1) 40%,
+        rgba(15, 9, 4, 0.75) 80%,
+        rgba(10, 5, 2, 0.95) 100%
+      );
       z-index: 2;
     }
 
@@ -62,83 +67,69 @@
       pointer-events: none;
     }
 
-    .content-card {
+    /* Docked lower bar so elephants remain the primary focus */
+    .content-container {
       position: relative;
       z-index: 10;
       text-align: center;
-      max-width: 580px;
-      padding: 36px 28px;
-      margin: 20px;
-      background: rgba(18, 12, 8, 0.5);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      width: 92%;
+      max-width: 620px;
+      margin-bottom: 40px;
+      padding: 28px 24px;
+      background: rgba(18, 11, 7, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
-      border: 1px solid rgba(255, 215, 140, 0.25);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-      animation: fadeInCard 1.2s ease-out forwards;
-    }
-
-    .date-badge {
-      font-size: 0.8rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: #f3c26b;
-      margin-bottom: 12px;
-      font-weight: 600;
+      border: 1px solid rgba(255, 215, 140, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+      animation: slideUp 1.2s ease-out forwards;
     }
 
     h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: #fff9f0;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-      margin-bottom: 8px;
+      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fffaf2;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+      margin-bottom: 6px;
     }
 
     .subtitle {
       font-style: italic;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.25rem;
-      color: #e2d1be;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-
-    .divider {
-      width: 50px;
-      height: 1.5px;
-      background: #f3c26b;
-      margin: 0 auto 20px auto;
-      opacity: 0.8;
+      color: #f1dfca;
+      margin-bottom: 18px;
+      line-height: 1.4;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
     }
 
     .action-btn {
-      background: linear-gradient(135deg, #d39e43 0%, #b87333 100%);
+      background: linear-gradient(135deg, #dfa84a 0%, #b87333 100%);
       color: #120c06;
       border: none;
-      padding: 13px 32px;
+      padding: 12px 32px;
       font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 20px rgba(211, 158, 67, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 5px 18px rgba(223, 168, 74, 0.45);
     }
 
     .action-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(211, 158, 67, 0.6);
-      background: linear-gradient(135deg, #f0b754 0%, #c9803b 100%);
+      box-shadow: 0 8px 24px rgba(223, 168, 74, 0.65);
     }
 
+    /* Modal Message Pop-up */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
       display: flex;
       justify-content: center;
@@ -146,7 +137,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
-      z-index: 20;
+      z-index: 30;
       padding: 20px;
     }
 
@@ -156,15 +147,14 @@
     }
 
     .modal-body {
-      background: #18120d;
-      border: 1px solid rgba(255, 215, 140, 0.25);
-      border-radius: 16px;
+      background: #19110b;
+      border: 1px solid rgba(255, 215, 140, 0.35);
+      border-radius: 18px;
       max-width: 480px;
       width: 100%;
-      padding: 35px 28px;
+      padding: 36px 28px;
       text-align: center;
-      position: relative;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
       transform: scale(0.92);
       transition: transform 0.35s ease;
     }
@@ -177,7 +167,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.35rem;
       line-height: 1.8;
-      color: #f7ebe1;
+      color: #f7ede3;
       margin-bottom: 24px;
     }
 
@@ -185,7 +175,7 @@
       background: transparent;
       color: #f3c26b;
       border: 1px solid #f3c26b;
-      padding: 8px 24px;
+      padding: 8px 26px;
       border-radius: 20px;
       cursor: pointer;
       font-size: 0.78rem;
@@ -195,16 +185,16 @@
     }
 
     .close-btn:hover {
-      background: rgba(243, 194, 107, 0.15);
+      background: rgba(243, 194, 107, 0.18);
     }
 
-    @keyframes subtleBreathe {
-      0% { transform: scale(1) translateY(0); }
-      100% { transform: scale(1.05) translateY(-8px); }
+    @keyframes gentleZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.035); }
     }
 
-    @keyframes fadeInCard {
-      from { opacity: 0; transform: translateY(20px); }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
@@ -213,23 +203,20 @@
 
   <div class="viewport">
     <div class="elephant-bg"></div>
-    <div class="golden-vignette"></div>
+    <div class="cinematic-overlay"></div>
     <canvas id="particles" class="particles-canvas"></canvas>
 
-    <div class="content-card">
-      <div class="date-badge">September 14</div>
+    <div class="content-container">
       <h1>Happy Birthday, Unnathi</h1>
-      <div class="divider"></div>
-      <p class="subtitle">Gentle, resilient, and deeply cherished.<br>May your year ahead be as grounded and majestic as this golden horizon.</p>
+      <p class="subtitle">Gentle strength, grace, and steady warmth.</p>
       <button class="action-btn" id="openBtn">Open Letter</button>
     </div>
   </div>
 
   <div class="modal-overlay" id="modal">
     <div class="modal-body">
-      <div class="date-badge">To Unnathi</div>
       <p class="modal-text">
-        "Like the gentle bond that guides the herd through the vast golden plains, your presence brings warmth, grace, and steady comfort wherever you go. Wishing you a peaceful, joyful, and truly unforgettable birthday."
+        "Like the gentle bond that guides the herd through golden open plains, your presence brings comfort, warmth, and grace wherever you go. Wishing you a truly beautiful and joyful birthday."
       </p>
       <button class="close-btn" id="closeBtn">Close</button>
     </div>
@@ -252,31 +239,31 @@
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.8;
-        this.speedY = -(Math.random() * 0.4 + 0.1);
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.alpha = Math.random() * 0.7 + 0.2;
-        this.fade = Math.random() * 0.006 + 0.002;
+        this.size = Math.random() * 2 + 0.6;
+        this.speedY = -(Math.random() * 0.35 + 0.1);
+        this.speedX = (Math.random() - 0.5) * 0.25;
+        this.alpha = Math.random() * 0.6 + 0.2;
+        this.fade = Math.random() * 0.005 + 0.002;
       }
       update() {
         this.y += this.speedY;
         this.x += this.speedX;
         this.alpha += this.fade;
-        if (this.alpha > 0.85 || this.alpha < 0.1) this.fade = -this.fade;
+        if (this.alpha > 0.8 || this.alpha < 0.1) this.fade = -this.fade;
         if (this.y < -10 || this.x < 0 || this.x > canvas.width) {
           this.reset();
           this.y = canvas.height + 10;
         }
       }
       draw() {
-        ctx.fillStyle = `rgba(255, 204, 112, ${Math.max(0, this.alpha)})`;
+        ctx.fillStyle = `rgba(255, 210, 120, ${Math.max(0, this.alpha)})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
     }
 
-    for (let i = 0; i < 50; i++) particles.push(new Particle());
+    for (let i = 0; i < 45; i++) particles.push(new Particle());
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
