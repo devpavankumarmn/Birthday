@@ -19,7 +19,7 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Montserrat', sans-serif;
-      background-color: #0d0906;
+      background-color: #0b0704;
       color: #fff;
     }
 
@@ -29,35 +29,31 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
+      padding: 30px 20px;
       overflow: hidden;
     }
 
-    /* Crisp, fully visible mother & baby elephant image */
+    /* Primary herd visual: clear mother & baby right in front */
     .elephant-bg {
       position: absolute;
-      inset: -2% -2% -2% -2%;
-      background-image: url('https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=2600&auto=format&fit=crop');
+      inset: -2%;
+      background-image: url('elephants.jpg');
       background-size: cover;
       background-position: center 25%;
-      filter: brightness(0.92) contrast(1.05);
-      animation: gentleZoom 16s ease-in-out infinite alternate;
+      filter: brightness(0.96) contrast(1.04);
+      animation: slowBreath 14s ease-in-out infinite alternate;
       z-index: 1;
     }
 
-    /* Subtle bottom gradient only to keep elephants 100% visible */
-    .cinematic-overlay {
+    /* Soft top & bottom vignette to keep elephants fully sharp & visible */
+    .vignette-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.05) 0%,
-        rgba(0, 0, 0, 0.1) 40%,
-        rgba(15, 9, 4, 0.75) 80%,
-        rgba(10, 5, 2, 0.95) 100%
-      );
+      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 40%, rgba(10, 6, 2, 0.6) 95%);
       z-index: 2;
+      pointer-events: none;
     }
 
     .particles-canvas {
@@ -67,69 +63,64 @@
       pointer-events: none;
     }
 
-    /* Docked lower bar so elephants remain the primary focus */
-    .content-container {
+    /* Top Floating Title */
+    .top-header {
       position: relative;
       z-index: 10;
       text-align: center;
-      width: 92%;
-      max-width: 620px;
-      margin-bottom: 40px;
-      padding: 28px 24px;
-      background: rgba(18, 11, 7, 0.55);
+      background: rgba(20, 14, 8, 0.45);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
       border: 1px solid rgba(255, 215, 140, 0.3);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-      animation: slideUp 1.2s ease-out forwards;
+      padding: 14px 28px;
+      border-radius: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      animation: fadeInDown 1.2s ease-out forwards;
     }
 
-    h1 {
+    .top-header h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
       font-weight: 700;
       letter-spacing: 0.04em;
-      color: #fffaf2;
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
-      margin-bottom: 6px;
+      color: #fff9f0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
-    .subtitle {
-      font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      color: #f1dfca;
-      margin-bottom: 18px;
-      line-height: 1.4;
-      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+    /* Bottom Interactive Floating Trigger */
+    .bottom-bar {
+      position: relative;
+      z-index: 10;
+      margin-bottom: 10px;
+      animation: fadeInUp 1.2s ease-out forwards;
     }
 
     .action-btn {
-      background: linear-gradient(135deg, #dfa84a 0%, #b87333 100%);
+      background: linear-gradient(135deg, #dfa84a 0%, #a86426 100%);
       color: #120c06;
-      border: none;
-      padding: 12px 32px;
-      font-size: 0.8rem;
+      border: 1px solid rgba(255, 235, 185, 0.6);
+      padding: 14px 36px;
+      font-size: 0.82rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       border-radius: 50px;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 5px 18px rgba(223, 168, 74, 0.45);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(223, 168, 74, 0.4);
+      transition: all 0.3s ease;
     }
 
     .action-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(223, 168, 74, 0.65);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(223, 168, 74, 0.7);
+      background: linear-gradient(135deg, #f0ba5a 0%, #b87333 100%);
     }
 
-    /* Modal Message Pop-up */
+    /* Letter / Modal Popup */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(8px);
       display: flex;
       justify-content: center;
@@ -147,12 +138,12 @@
     }
 
     .modal-body {
-      background: #19110b;
+      background: #18110b;
       border: 1px solid rgba(255, 215, 140, 0.35);
       border-radius: 18px;
       max-width: 480px;
       width: 100%;
-      padding: 36px 28px;
+      padding: 38px 28px;
       text-align: center;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
       transform: scale(0.92);
@@ -163,12 +154,21 @@
       transform: scale(1);
     }
 
+    .modal-badge {
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #f3c26b;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
     .modal-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       line-height: 1.8;
-      color: #f7ede3;
-      margin-bottom: 24px;
+      color: #fdf5ec;
+      margin-bottom: 26px;
     }
 
     .close-btn {
@@ -188,13 +188,18 @@
       background: rgba(243, 194, 107, 0.18);
     }
 
-    @keyframes gentleZoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.035); }
+    @keyframes slowBreath {
+      0% { transform: scale(1) translateY(0); }
+      100% { transform: scale(1.03) translateY(-6px); }
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
@@ -203,26 +208,30 @@
 
   <div class="viewport">
     <div class="elephant-bg"></div>
-    <div class="cinematic-overlay"></div>
+    <div class="vignette-overlay"></div>
     <canvas id="particles" class="particles-canvas"></canvas>
 
-    <div class="content-container">
+    <div class="top-header">
       <h1>Happy Birthday, Unnathi</h1>
-      <p class="subtitle">Gentle strength, grace, and steady warmth.</p>
+    </div>
+
+    <div class="bottom-bar">
       <button class="action-btn" id="openBtn">Open Letter</button>
     </div>
   </div>
 
   <div class="modal-overlay" id="modal">
     <div class="modal-body">
+      <div class="modal-badge">To Unnathi</div>
       <p class="modal-text">
-        "Like the gentle bond that guides the herd through golden open plains, your presence brings comfort, warmth, and grace wherever you go. Wishing you a truly beautiful and joyful birthday."
+        "Like the gentle bond that guides the herd through the vast golden plains, your presence brings warmth, grace, and steady comfort wherever you go. Wishing you a truly wonderful and unforgettable birthday."
       </p>
       <button class="close-btn" id="closeBtn">Close</button>
     </div>
   </div>
 
   <script>
+    // Ambient Savanna Dust/Glow Particles
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -242,21 +251,21 @@
         this.size = Math.random() * 2 + 0.6;
         this.speedY = -(Math.random() * 0.35 + 0.1);
         this.speedX = (Math.random() - 0.5) * 0.25;
-        this.alpha = Math.random() * 0.6 + 0.2;
+        this.alpha = Math.random() * 0.65 + 0.2;
         this.fade = Math.random() * 0.005 + 0.002;
       }
       update() {
         this.y += this.speedY;
         this.x += this.speedX;
         this.alpha += this.fade;
-        if (this.alpha > 0.8 || this.alpha < 0.1) this.fade = -this.fade;
+        if (this.alpha > 0.85 || this.alpha < 0.1) this.fade = -this.fade;
         if (this.y < -10 || this.x < 0 || this.x > canvas.width) {
           this.reset();
           this.y = canvas.height + 10;
         }
       }
       draw() {
-        ctx.fillStyle = `rgba(255, 210, 120, ${Math.max(0, this.alpha)})`;
+        ctx.fillStyle = `rgba(255, 215, 130, ${Math.max(0, this.alpha)})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -272,6 +281,7 @@
     }
     animate();
 
+    // Modal Events
     const openBtn = document.getElementById('openBtn');
     const closeBtn = document.getElementById('closeBtn');
     const modal = document.getElementById('modal');
